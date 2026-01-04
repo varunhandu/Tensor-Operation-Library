@@ -1,0 +1,48 @@
+# =========================
+# Bazel (core)
+# =========================
+bazel-*
+.bazel/
+bazel-bin/
+bazel-out/
+bazel-testlogs/
+
+# Bazel runfiles / cache
+**/*.runfiles
+**/*.runfiles_manifest
+**/*.repo_mapping
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments (if any)
+.venv/
+venv/
+
+# =========================
+# Native extensions / build artifacts
+# =========================
+*.so
+*.dylib
+*.dll
+*.o
+*.a
+
+# =========================
+# Editor / OS noise
+# =========================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# =========================
+# Misc
+# =========================
+*.log

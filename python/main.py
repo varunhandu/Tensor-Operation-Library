@@ -1,0 +1,14 @@
+import matrix_py
+
+a = [
+    [1.0, 2.0],
+    [3.0, 4.0],
+]
+
+b = [
+    [5.0, 6.0],
+    [7.0, 8.0],
+]
+
+result = matrix_py.matmul(a, b)
+print("Result:", result)
