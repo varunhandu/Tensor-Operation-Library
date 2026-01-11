@@ -1,5 +1,5 @@
 module(
-    name = "bazel_hw",
+    name = "cpu_tensor_core",
     version = "0.1.0",
 )
 
