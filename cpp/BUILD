@@ -18,7 +18,7 @@ cc_binary(
     copts = ["-std=c++20", "-fPIC"],
     linkshared = True,
     linkopts = ["-Wl,-soname,matrix_py.so"],
-    visibility = ["//visibility:public"],
+    visibility = ["//visibility:private"],
 )
 
 genrule(
@@ -26,5 +26,5 @@ genrule(
     srcs = [":matrix_py"],
     outs = ["matrix_py.so"],
     cmd = "cp $(location :matrix_py) $@",
-    visibility = ["//visibility:public"],
+    visibility = ["//visibility:private"],
 )

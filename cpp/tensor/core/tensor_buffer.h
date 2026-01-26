@@ -12,6 +12,7 @@ public:
     using value_type = double;
 
     TensorBuffer(std::vector<size_t> shape);
+    TensorBuffer(const std::vector<std::vector<double>>& data);
 
     value_type* data();
     const value_type* data() const;

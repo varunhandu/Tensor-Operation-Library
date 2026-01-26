@@ -8,7 +8,6 @@
 using namespace tensor_core;
 
 int main() {
-    // Create buffer A
     auto bufA = std::make_shared<TensorBuffer>(
         std::vector<size_t>{2, 2}
     );
@@ -19,7 +18,6 @@ int main() {
 
     Tensor A(bufA);
 
-    // Create buffer B
     auto bufB = std::make_shared<TensorBuffer>(
         std::vector<size_t>{2, 2}
     );
@@ -30,10 +28,8 @@ int main() {
 
     Tensor B(bufB);
 
-    // Lazy add
     Tensor C = A + B;
 
-    // Force evaluation
     TensorView out = C.eval();
 
     const double* out_data = out.data();

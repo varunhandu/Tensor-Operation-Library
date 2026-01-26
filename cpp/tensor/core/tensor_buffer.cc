@@ -1,4 +1,5 @@
 #include "core/tensor_buffer.h"
+#include "tensor_buffer.h"
 
 #include <numeric>
 #include <stdexcept>
@@ -19,6 +20,21 @@ TensorBuffer::TensorBuffer(std::vector<size_t> shape)
         new value_type[total](),
         std::default_delete<value_type[]>()
     );
+}
+
+TensorBuffer::TensorBuffer(const std::vector<std::vector<double>>& data)
+    : shape_{data.size(), data.empty() ? 0 : data[0].size()}
+{
+    const size_t total = shape_[0] * shape_[1];
+
+    data_ = std::shared_ptr<value_type[]>(
+        new value_type[total],
+        std::default_delete<value_type[]>()
+    );
+
+    for (size_t i = 0; i < shape_[0]; ++i)
+        for (size_t j = 0; j < shape_[1]; ++j)
+            data_[i * shape_[1] + j] = data[i][j];
 }
 
 TensorBuffer::value_type* TensorBuffer::data() {
