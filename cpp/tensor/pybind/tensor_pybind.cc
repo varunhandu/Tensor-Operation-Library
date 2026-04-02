@@ -4,7 +4,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(tensor_core, m) {
+PYBIND11_MODULE(tensor_py, m) {
     auto tensor_class = tensor_py::bind_tensor(m);
     bind_ops(tensor_class);
 }

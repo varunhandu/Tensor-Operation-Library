@@ -25,6 +25,7 @@ TensorBuffer::TensorBuffer(std::vector<size_t> shape)
 TensorBuffer::TensorBuffer(const std::vector<std::vector<double>>& data)
     : shape_{data.size(), data.empty() ? 0 : data[0].size()}
 {
+    strides_ = compute_strides(shape_);
     const size_t total = shape_[0] * shape_[1];
 
     data_ = std::shared_ptr<value_type[]>(

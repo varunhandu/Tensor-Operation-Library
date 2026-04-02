@@ -31,3 +31,13 @@ python.toolchain(
 )
 
 use_repo(python, "python_3_12")
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+
+pip.parse(
+    hub_name = "pip_deps",
+    python_version = "3.12",
+    requirements_lock = "//python:requirements.txt",
+)
+
+use_repo(pip, "pip_deps")

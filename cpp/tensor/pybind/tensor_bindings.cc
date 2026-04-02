@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
+#include <pybind11/stl.h>
 #include "tensor_bindings.h"
 #include "core/tensor.h"
 #include "core/tensor_buffer.h"

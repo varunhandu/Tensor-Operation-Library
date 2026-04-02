@@ -1,4 +1,5 @@
 #include "core/tensor_view.h"
+#include <iostream>
 
 #include <memory>
 #include <numeric>
@@ -22,6 +23,7 @@ TensorView::TensorView(
     }
 
     if (shape_.size() != strides_.size()) {
+        std::cout << "shape size: " << shape_.size() << ", strides size: " << strides_.size() << std::endl;
         throw std::runtime_error(
             "TensorView: shape and strides rank mismatch"
         );
