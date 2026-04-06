@@ -1,4 +1,6 @@
 #include "core/tensor_view.h"
+#include <cfloat>
+#include <cstddef>
 #include <iostream>
 
 #include <memory>
@@ -78,22 +80,25 @@ size_t TensorView::numel() const {
     );
 }
 
-TensorView TensorView::transpose() const {
-    if (ndim() != 2) {
+TensorView TensorView::transpose(size_t dim1, size_t dim2) const {
+    if (ndim() == 1) {
         throw std::runtime_error(
-            "TensorView::transpose: only 2D tensors supported"
+            "TensorView::transpose: 1D tensors cannot be transposed"
         );
     }
 
-    std::vector<size_t> new_shape = {
-        shape_[1],
-        shape_[0]
-    };
+    if (dim1 < 0 || dim1 >= ndim() || dim2 < 0 || dim2 >= ndim()) {
+        throw std::runtime_error(
+            "TensorView::transpose: dimension out of range"
+        );
+    }
 
-    std::vector<size_t> new_strides = {
-        strides_[1],
-        strides_[0]
-    };
+
+    std::vector<size_t> new_shape = shape_;
+    std::swap(new_shape[dim1], new_shape[dim2]);
+
+    std::vector<size_t> new_strides = strides_;
+    std::swap(new_strides[dim1], new_strides[dim2]);
 
     return TensorView(
         buffer_,

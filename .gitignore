@@ -38,6 +38,7 @@ venv/
 # =========================
 .vscode/
 .idea/
+.zed/
 *.swp
 .DS_Store
 Thumbs.db

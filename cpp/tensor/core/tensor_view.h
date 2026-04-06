@@ -31,7 +31,7 @@ public:
     size_t ndim() const;
     size_t numel() const;
 
-    TensorView transpose() const; // can only change shape_ and strides_
+    TensorView transpose(size_t dim1, size_t dim2) const; // can only change shape_ and strides_
 
 private:
     std::shared_ptr<TensorBuffer> buffer_;
