@@ -1,6 +1,7 @@
 #pragma once
 
 #include "expr/expr.h"
+#include <cstddef>
 #include <memory>
 #include <vector>
 
@@ -14,14 +15,14 @@ public:
     // Construct from expression
     explicit Tensor(Expr expr);
 
-    TensorView eval();
+    TensorView eval() const;
 
     const std::vector<size_t>& shape() const;
 
     // Operators - To be implemented
     Tensor operator+(const Tensor& other) const;
     Tensor matmul(const Tensor& other) const;
-    Tensor transpose() const;
+    Tensor transpose(size_t dim1, size_t dim2) const;
 
 private:
     // Exactly one of these is active

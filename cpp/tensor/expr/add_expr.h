@@ -11,7 +11,7 @@ class AddExprNode : public ExprNode {
 public:
     AddExprNode(Expr lhs, Expr rhs);
 
-    TensorView eval() override;
+    TensorView eval() const override;
     const std::vector<size_t>& shape() const override;
 
 private:

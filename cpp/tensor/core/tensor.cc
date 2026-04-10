@@ -1,7 +1,9 @@
 #include "core/tensor.h"
 #include "core/tensor_view.h"
 #include "core/tensor_buffer.h"
+#include "expr/view_expr.h"
 
+#include <cstddef>
 #include <stdexcept>
 
 namespace tensor_core {
@@ -35,7 +37,7 @@ Tensor::Tensor(Expr expr)
 /*
  * Force evaluation (materialize data if needed)
  */
-TensorView Tensor::eval() {
+TensorView Tensor::eval() const {
     // If we already evaluated before, return cached view
     if (cached_view_) {
         return *cached_view_;
@@ -56,9 +58,12 @@ TensorView Tensor::eval() {
 
     TensorView view = expr_->eval();
 
+    // TODO: Fix this const mismatch. Possible fix -> mutable buffers
     // Cache result
-    buffer_ = view.buffer();
-    expr_.reset();
+    // buffer_ = view.buffer();
+    // expr_.reset();
+
+    // this functionality is causing mismatch between const eval and mutable buffer_ and expr_
 
     cached_view_ = std::make_shared<TensorView>(view);
     return view;
@@ -81,6 +86,11 @@ const std::vector<size_t>& Tensor::shape() const {
     }
 
     throw std::runtime_error("Tensor::shape: invalid tensor state");
+}
+
+Tensor Tensor::transpose(size_t dim1, size_t dim2) const {
+    auto v = this->eval().transpose(dim1, dim2);
+    return Tensor(std::make_shared<ViewExprNode>(v));
 }
 
 } // namespace tensor_core

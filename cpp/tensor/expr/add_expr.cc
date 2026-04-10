@@ -22,7 +22,7 @@ const std::vector<size_t>& AddExprNode::shape() const {
     return shape_;
 }
 
-TensorView AddExprNode::eval() {
+TensorView AddExprNode::eval() const {
     TensorView a = lhs_->eval();
     TensorView b = rhs_->eval();
 

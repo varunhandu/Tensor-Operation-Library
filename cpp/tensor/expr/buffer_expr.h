@@ -11,7 +11,7 @@ public:
     explicit BufferExprNode(std::shared_ptr<TensorBuffer> buffer)
         : buffer_(std::move(buffer)) {}
 
-    TensorView eval() override {
+    TensorView eval() const override {
         return TensorView::from_buffer(buffer_);
     }
 

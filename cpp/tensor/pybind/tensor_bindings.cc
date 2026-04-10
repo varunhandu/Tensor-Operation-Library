@@ -33,6 +33,9 @@ py::class_<Tensor> bind_tensor(py::module_& m) {
                 stride,
                 v.data()
             );
+        })
+        .def("transpose", [](Tensor& t, size_t dim1, size_t dim2) {
+            return t.transpose(dim1, dim2);
         });
 
     return cls;

@@ -9,7 +9,7 @@ class ExprNode {
 public:
     virtual ~ExprNode() = default;
 
-    virtual TensorView eval() = 0;
+    virtual TensorView eval() const = 0;
     virtual const std::vector<size_t>& shape() const = 0;
 };
 

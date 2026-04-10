@@ -35,6 +35,20 @@ def main():
     else:
         print("❌ Test FAILED")
 
+    print("=== Transpose Test ===")
+    t4 = tensor_py.Tensor([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+    print("Tensor 4:", t4.eval())
+    t5 = t4.transpose(0, 1)
+    print("After transpose:", t5.eval())
+    expected_transpose = [[1.0, 4.0], [2.0, 5.0], [3.0, 6.0]]
+    if t5.eval().tolist() == expected_transpose:
+        print("✅ Transpose PASSED")
+    else:
+        print("❌ Transpose FAILED")
 
+
+# TODO : BUG FIX
+# Tensor does not follow stride based indexing correctly
+# It needs to be fixed. Currently causing problems in transpose operations.
 if __name__ == "__main__":
     main()
